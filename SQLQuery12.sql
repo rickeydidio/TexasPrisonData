@@ -23,13 +23,16 @@ ORDER BY Population DESC;
 
 --SELECT COUNT DISTINCT(OffenseCode) FROM TXJune2021
 
---Next we will look at the breakdown of each gender. 
+--Next we will look at the breakdown of each gender as well as the population percentage of each.
 
-SELECT Gender, COUNT(*) as Prisoners FROM TXJune2021
+SELECT Gender, COUNT(*) as Prisoners, 
+	FLOOR(count(*) * 100.0/ sum(count(*)) over ()) as Total_Population_Percentage
+FROM TXJune2021
 GROUP BY Gender; 
 
-SELECT COUNT(Gender) FROM TXJune2021
-WHERE Gender = 'F'
+--SELECT COUNT(Gender) as Female_Inmates 
+FROM TXJune2021
+WHERE Gender = 'F';
 
 SELECT COUNT(Gender) FROM TXJune2021
 WHERE Gender = 'M'
