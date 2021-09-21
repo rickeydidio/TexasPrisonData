@@ -44,11 +44,23 @@ GROUP BY Race;
 --SELECT COUNT(Gender) FROM TXJune2021
 --WHERE Gender = 'M'
 
---Next will be an analysis of projected release dates. In order to make this easier, we are going to update the date columns on the table
+--Next will be an analysis of projected release dates. In order to make this easier, we are going to use the year function the date columns on the table
 --to only list the year. Then we will group projected releases by year.
+
+SELECT YEAR(ProjectedRelease) as Year, COUNT(YEAR(ProjectedRelease)) as Inmates_Released
+FROM TXJune2021
+Group by YEAR(ProjectedRelease)
+ORDER BY YEAR(ProjectedRelease) ASC;
+
+SELECT Name, CAST(ProjectedRelease AS DATE) as Projected_Release FROM TXJune2021;
+
+SELECT Name, CAST(ProjectedRelease AS DATE) as Projected_Release FROM TXJune2021
+WHERE ProjectedRelease < '2030-01-01';
+
+
 
 --UPDATE TXJune2021
 --SET ProjectedRelease = YEAR(CURRENT_TIMESTAMP);
 
 --SELECT COUNT(*) FROM TXJune2021
---WHERE [projected release] < "2030-01-01"
+--WHERE [projected release] < '2030-01-01';
