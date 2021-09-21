@@ -49,6 +49,7 @@ GROUP BY Race;
 
 SELECT YEAR(ProjectedRelease) as Year, COUNT(YEAR(ProjectedRelease)) as Inmates_Released
 FROM TXJune2021
+Where Year(ProjectedRelease) BETWEEN '2021' AND '2030'
 Group by YEAR(ProjectedRelease)
 ORDER BY YEAR(ProjectedRelease) ASC;
 
@@ -64,3 +65,16 @@ WHERE ProjectedRelease < '2030-01-01';
 
 --SELECT COUNT(*) FROM TXJune2021
 --WHERE [projected release] < '2030-01-01';
+
+
+
+--Creating Views for later visualization
+
+--This first one is the amount of projected releases by year over the next 10 year.
+
+Create View ProjectedReleaseByYear as
+SELECT YEAR(ProjectedRelease) as Year, COUNT(YEAR(ProjectedRelease)) as Inmates_Released
+FROM TXJune2021
+Where Year(ProjectedRelease) BETWEEN '2021' AND '2030'
+Group by YEAR(ProjectedRelease)
+ORDER BY YEAR(ProjectedRelease) ASC OFFSET 0 rows;
